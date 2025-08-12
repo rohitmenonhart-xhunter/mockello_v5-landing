@@ -25,28 +25,37 @@ import { ArrowLeft, Users, CheckCircle, Settings, HeadphonesIcon } from "lucide-
 const Index = () => {
   const [currentPage, setCurrentPage] = useState<'home' | 'products' | 'capabilities' | 'services'>('home');
   const [selectedCategory, setSelectedCategory] = useState<string>('Recent Launches');
-  const [showIntroVideo, setShowIntroVideo] = useState(false); // Start with false
-  const [isWebsiteLoaded, setIsWebsiteLoaded] = useState(true); // Start with true
-  const [hasPlayedIntro, setHasPlayedIntro] = useState(false);
+  const [showIntroVideo, setShowIntroVideo] = useState(false);
+  const [isWebsiteLoaded, setIsWebsiteLoaded] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
-  // Check if we should show intro video (only on desktop and first visit)
+  // Detect mobile device
   useEffect(() => {
-    const isMobile = window.innerWidth < 768;
-    const hasVisited = localStorage.getItem('mockello-visited');
+    const checkMobile = () => {
+      const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
+      setIsMobile(isMobileDevice);
+      return isMobileDevice;
+    };
+
+    const isMobileDevice = checkMobile();
     
-    console.log('Initial check - isMobile:', isMobile, 'hasVisited:', hasVisited);
-    
-    // Only show intro video on desktop and if user hasn't visited before
-    if (!isMobile && !hasVisited && currentPage === 'home') {
+    // Only show intro video on desktop and on initial home page load
+    if (currentPage === 'home' && !isMobileDevice) {
+      console.log('Desktop detected, showing intro video');
       setShowIntroVideo(true);
       setIsWebsiteLoaded(false);
-      setHasPlayedIntro(true);
-      localStorage.setItem('mockello-visited', 'true');
     } else {
-      // Skip intro video for mobile or returning visitors
+      console.log('Mobile detected or not home page, skipping intro video');
       setShowIntroVideo(false);
       setIsWebsiteLoaded(true);
     }
+
+    const handleResize = () => {
+      checkMobile();
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   // Hide intro video when navigating away from home
@@ -59,8 +68,8 @@ const Index = () => {
 
   // Debug state changes
   useEffect(() => {
-    console.log('State changed - showIntroVideo:', showIntroVideo, 'isWebsiteLoaded:', isWebsiteLoaded);
-  }, [showIntroVideo, isWebsiteLoaded]);
+    console.log('State changed - showIntroVideo:', showIntroVideo, 'isWebsiteLoaded:', isWebsiteLoaded, 'isMobile:', isMobile);
+  }, [showIntroVideo, isWebsiteLoaded, isMobile]);
 
   const handleVideoEnd = () => {
     console.log('Video ended, transitioning to website');
@@ -70,19 +79,6 @@ const Index = () => {
       console.log('Website should now be visible');
     }, 100);
   };
-
-  // Emergency fallback - if video doesn't end in 10 seconds, show website
-  useEffect(() => {
-    if (showIntroVideo) {
-      const fallbackTimer = setTimeout(() => {
-        console.log('Fallback: Force showing website after 10 seconds');
-        setShowIntroVideo(false);
-        setIsWebsiteLoaded(true);
-      }, 10000);
-      
-      return () => clearTimeout(fallbackTimer);
-    }
-  }, [showIntroVideo]);
 
   // Initialize intersection observer to detect when elements enter viewport
   useEffect(() => {
@@ -355,19 +351,17 @@ const Index = () => {
   return (
     <>
       <AnnouncementBar />
-      {/* Intro Video Overlay - Only show on desktop and first visit */}
-      {showIntroVideo && (
-        <div className="fixed inset-0 z-50">
+      {/* Intro Video Overlay - Only show on desktop */}
+      {showIntroVideo && !isMobile && (
+        <div>
           <IntroVideo onVideoEnd={handleVideoEnd} />
         </div>
       )}
       
-      {/* Main Website - Always visible on mobile */}
+      {/* Main Website */}
       <div 
         className={`min-h-screen bg-white transition-all duration-1000 ${
-          showIntroVideo && !window.matchMedia('(max-width: 768px)').matches
-            ? 'opacity-0 blur-lg pointer-events-none' 
-            : 'opacity-100 blur-none pointer-events-auto'
+          showIntroVideo && !isMobile ? 'opacity-0 blur-lg pointer-events-none' : 'opacity-100 blur-none pointer-events-auto'
         }`}
       >
         <Navbar onPageChange={handlePageChange} />
