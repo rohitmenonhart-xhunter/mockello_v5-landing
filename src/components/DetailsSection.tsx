@@ -19,22 +19,9 @@ const DetailsSection = () => {
   };
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
-    // Simple validation
-    if (!formData.fullName || !formData.email) {
-      toast.error("Please fill in all required fields");
-      return;
-    }
-
-    // Demo form submission
-    toast.success("Request submitted successfully!");
-
-    // Reset form
-    setFormData({
-      fullName: "",
-      email: "",
-      company: ""
-    });
+    // Open phone dialer with primary contact
+    window.open('tel:+917550000805', '_self');
+    toast.success("Redirecting to phone call...");
   };
   return <section id="details" className="w-full bg-white py-0">
       <div className="container px-4 sm:px-6 lg:px-8 mx-auto">

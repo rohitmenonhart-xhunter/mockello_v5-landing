@@ -299,7 +299,10 @@ const Index = () => {
                   <p className="text-sm opacity-90 mb-4 max-w-xl mx-auto px-2">
                     All professional services are currently under development. Get notified when they're available!
                   </p>
-                  <button className="bg-white text-pulse-500 hover:bg-gray-50 font-semibold py-2 px-6 rounded-full transition-all duration-300 text-sm w-full sm:w-auto">
+                  <button 
+                    onClick={() => window.open('tel:+917550000805', '_self')}
+                    className="bg-white text-pulse-500 hover:bg-gray-50 font-semibold py-2 px-6 rounded-full transition-all duration-300 text-sm w-full sm:w-auto"
+                  >
                     Notify Me
                   </button>
                 </div>

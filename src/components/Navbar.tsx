@@ -442,7 +442,10 @@ const Navbar = ({ onPageChange }: NavbarProps) => {
               <div className="bg-gradient-to-r from-pulse-500 to-pulse-600 rounded-2xl p-6 text-white text-center">
                 <h3 className="font-semibold text-lg mb-2">Ready to get started?</h3>
                 <p className="text-sm opacity-90 mb-4">Join thousands of businesses using MOCKELLO</p>
-                <button className="w-full bg-white text-pulse-500 hover:bg-gray-50 font-semibold py-3 px-6 rounded-xl transition-colors text-base">
+                <button 
+                  onClick={() => window.open('tel:+917550000805', '_self')}
+                  className="w-full bg-white text-pulse-500 hover:bg-gray-50 font-semibold py-3 px-6 rounded-xl transition-colors text-base"
+                >
                   Get Started Free
                 </button>
               </div>

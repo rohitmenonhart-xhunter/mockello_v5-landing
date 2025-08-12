@@ -344,7 +344,10 @@ const CapabilityCatalog = ({ onBackClick }: CapabilityCatalogProps) => {
               </div>
             </div>
             <div className="mt-4 sm:mt-6">
-              <button className="bg-white text-pulse-500 hover:bg-gray-50 font-semibold py-3 px-6 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-sm w-full sm:w-auto">
+              <button 
+                onClick={() => window.open('tel:+917550000805', '_self')}
+                className="bg-white text-pulse-500 hover:bg-gray-50 font-semibold py-3 px-6 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-sm w-full sm:w-auto"
+              >
                 Get Free Consultation
               </button>
             </div>

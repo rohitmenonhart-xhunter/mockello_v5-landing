@@ -1,6 +1,7 @@
 
 import React, { useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
+import { ArrowRight } from "lucide-react";
 
 interface StepCardProps {
   number: string;
@@ -162,6 +163,17 @@ const HowItWorks = () => {
               </div>
             ))}
           </div>
+        </div>
+        
+        {/* Get Started CTA */}
+        <div className="text-center mt-12 opacity-0 fade-in-stagger">
+          <button 
+            onClick={() => window.open('tel:+917550000805', '_self')}
+            className="button-primary inline-flex items-center"
+          >
+            <span>Get Started</span>
+            <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+          </button>
         </div>
       </div>
     </section>

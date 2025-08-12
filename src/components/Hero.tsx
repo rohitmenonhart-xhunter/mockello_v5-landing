@@ -161,8 +161,8 @@ const Hero = () => {
               className="flex flex-col sm:flex-row gap-4 opacity-0 animate-fade-in" 
               style={{ animationDelay: "0.7s" }}
             >
-              <a 
-                href="#get-access" 
+              <button 
+                onClick={() => window.open('tel:+917550000805', '_self')}
                 className="flex items-center justify-center group w-full sm:w-auto text-center" 
                 style={{
                   backgroundColor: '#FE5C02',
@@ -178,7 +178,7 @@ const Hero = () => {
               >
                 Get Started For Free
                 <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
-              </a>
+              </button>
               <a 
                 href="#demo" 
                 className="flex items-center justify-center group w-full sm:w-auto text-center" 

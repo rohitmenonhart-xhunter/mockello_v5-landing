@@ -2,6 +2,15 @@ import React from "react";
 import { Mail, Phone, MessageCircle } from "lucide-react";
 
 const Contact = () => {
+  const handlePhoneCall = (phoneNumber: string, contactName: string) => {
+    window.open(`tel:${phoneNumber}`, '_self');
+  };
+
+  const handleContactSales = () => {
+    // Open phone dialer with primary contact
+    window.open('tel:+917550000805', '_self');
+  };
+
   return (
     <section className="py-12 sm:py-16 md:py-20 bg-white" id="contact">
       <div className="section-container">
@@ -38,17 +47,32 @@ const Contact = () => {
                 <Phone className="w-8 h-8 text-pulse-500" />
               </div>
               <h3 className="text-lg font-semibold mb-2">Phone Support</h3>
-              <p className="text-gray-600">1800-MOCKELLO</p>
+              <div className="space-y-2">
+                <button 
+                  onClick={() => handlePhoneCall('+917550000805', 'Rohit')}
+                  className="block w-full text-gray-600 hover:text-pulse-500 transition-colors cursor-pointer"
+                >
+                  <div className="font-medium">Rohit</div>
+                  <div className="text-sm">+91 7550000805</div>
+                </button>
+                <button 
+                  onClick={() => handlePhoneCall('+919789026235', 'Prem')}
+                  className="block w-full text-gray-600 hover:text-pulse-500 transition-colors cursor-pointer"
+                >
+                  <div className="font-medium">Prem</div>
+                  <div className="text-sm">+91 9789026235</div>
+                </button>
+              </div>
             </div>
           </div>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <a 
-              href="#contact-sales" 
+            <button 
+              onClick={handleContactSales}
               className="button-primary inline-flex items-center"
             >
               Contact Sales
-            </a>
+            </button>
             <a 
               href="#support-center" 
               className="border-2 border-pulse-500 text-pulse-500 hover:bg-pulse-50 font-medium py-3 px-8 rounded-full transition-all duration-300"
