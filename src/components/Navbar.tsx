@@ -343,13 +343,13 @@ const Navbar = ({ onPageChange }: NavbarProps) => {
                 <span className="font-medium text-gray-900 text-lg">Capabilities</span>
               </button>
 
-              <button 
+          <button 
                 className="w-full flex items-center space-x-4 px-4 py-4 rounded-xl text-left hover:bg-gray-50 transition-colors group"
                 onClick={() => handleMenuItemClick(() => {
-                  const element = document.getElementById('custom-development');
-                  if (element) {
-                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                  }
+              const element = document.getElementById('custom-development');
+              if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }
                 })}
               >
                 <Code className="w-6 h-6 text-gray-400 group-hover:text-pulse-500" />
@@ -364,7 +364,7 @@ const Navbar = ({ onPageChange }: NavbarProps) => {
                 <button 
                   className="w-full flex items-center justify-between px-4 py-4 rounded-xl text-left hover:bg-gray-50 transition-colors group"
                   onClick={() => toggleSection('resources')}
-                >
+          >
                   <div className="flex items-center space-x-4">
                     <BookOpen className="w-6 h-6 text-gray-400 group-hover:text-pulse-500" />
                     <span className="font-medium text-gray-900 text-lg">Resources</span>
@@ -403,8 +403,8 @@ const Navbar = ({ onPageChange }: NavbarProps) => {
                     "w-5 h-5 text-gray-400 transition-transform duration-200",
                     expandedSection === 'partnerships' ? "rotate-180" : ""
                   )} />
-                </button>
-                
+          </button>
+
                 {expandedSection === 'partnerships' && (
                   <div className="ml-10 mt-2 space-y-1">
                     <a href="#become-partner" className="block px-4 py-3 text-base text-gray-600 hover:text-pulse-500 hover:bg-gray-50 rounded-lg transition-colors">
@@ -448,10 +448,10 @@ const Navbar = ({ onPageChange }: NavbarProps) => {
                 >
                   Get Started Free
                 </button>
-              </div>
+          </div>
             </div>
           </nav>
-        </div>
+          </div>
       </div>
     </header>
   );

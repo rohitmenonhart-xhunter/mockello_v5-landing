@@ -42,8 +42,8 @@ const Index = () => {
     // Only show intro video on desktop and on initial home page load
     if (currentPage === 'home' && !isMobileDevice) {
       console.log('Desktop detected, showing intro video');
-      setShowIntroVideo(true);
-      setIsWebsiteLoaded(false);
+    setShowIntroVideo(true);
+    setIsWebsiteLoaded(false);
     } else {
       console.log('Mobile detected or not home page, skipping intro video');
       setShowIntroVideo(false);
